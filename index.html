@@ -2,17 +2,28 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>아바타 파스텔 호핑</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: #fff; font-family: 'BM JUA OTF', sans-serif; }
+  body {
+    background: #fff;
+    font-family: 'BM JUA OTF', sans-serif;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  .frame-wrapper {
+    width: 100%;
+    max-width: 2560px;
+  }
   .frame {
     position: relative;
     width: 2560px;
     height: 3527px;
     background: #fff;
-    margin: 0 auto;
     overflow: hidden;
+    transform-origin: top center;
   }
   .frame img { display: block; max-width: none; pointer-events: none; }
   .abs { position: absolute; }
@@ -194,6 +205,7 @@
 </style>
 </head>
 <body>
+<div class="frame-wrapper">
 <div class="frame">
 
   <!-- Background -->
@@ -253,8 +265,19 @@
   </div>
 
 </div>
+</div>
 
 <script>
+// Scale frame to fit viewport width
+function scaleFrame() {
+  const wrapper = document.querySelector('.frame-wrapper');
+  const frame = document.querySelector('.frame');
+  const scale = Math.min(1, wrapper.offsetWidth / 2560);
+  frame.style.transform = `scale(${scale})`;
+  wrapper.style.height = (3527 * scale) + 'px';
+}
+scaleFrame();
+window.addEventListener('resize', scaleFrame);
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
