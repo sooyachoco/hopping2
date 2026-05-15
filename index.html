@@ -9,13 +9,14 @@
   body {
     background: #fff;
     font-family: 'BM JUA OTF', sans-serif;
-    display: flex;
-    justify-content: center;
     min-height: 100vh;
+    overflow-x: hidden;
   }
   .frame-wrapper {
     width: 100%;
     max-width: 2560px;
+    margin: 0 auto;
+    overflow: hidden;
   }
   .frame {
     position: relative;
@@ -23,7 +24,7 @@
     height: 3527px;
     background: #fff;
     overflow: hidden;
-    transform-origin: top center;
+    transform-origin: top left;
   }
   .frame img { display: block; max-width: none; pointer-events: none; }
   .abs { position: absolute; }
